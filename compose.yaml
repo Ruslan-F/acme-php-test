@@ -1,0 +1,19 @@
+# docker services (containers) list in free naming format
+services:
+  # php web server container
+  server:
+    build:
+      context: .
+      # target stage at Dockerfile
+      target: development
+    # list of ports exposed to the world / local machine OS
+    ports:
+      # forward world's (browser's) 9000 to container's 80
+      - 9000:80
+    # develop defines options for development
+    develop:
+      # watch defines what actions should be applied, what path to watch for changes and what path to use later as target for action
+      watch:
+        - action: sync
+          path: .
+          target: /var/www/html
